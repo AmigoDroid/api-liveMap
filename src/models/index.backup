@@ -1,0 +1,102 @@
+export default function associate(models) {
+
+    models.Provedor.hasMany(models.Usuario, {
+        foreignKey: "provedorId"
+    });
+
+    models.Usuario.belongsTo(models.Provedor);
+
+    models.Provedor.hasMany(models.Cliente, {
+        foreignKey: "provedorId"
+    });
+
+    models.Cliente.belongsTo(models.Provedor);
+
+    models.Cliente.hasMany(models.Endereco, {
+        foreignKey: "clienteId"
+    });
+
+    models.Endereco.belongsTo(models.Cliente);
+
+    models.Cliente.hasMany(models.Contrato, {
+        foreignKey: "clienteId"
+    });
+
+    models.Contrato.belongsTo(models.Cliente);
+
+    models.Contrato.hasMany(models.Servico, {
+        foreignKey: "contratoId"
+    });
+
+    models.Servico.belongsTo(models.Contrato);
+
+    //2
+    Pop.hasMany(Rack);
+Rack.belongsTo(Pop);
+
+Pop.hasMany(Olt);
+Olt.belongsTo(Pop);
+
+Rack.hasMany(Olt);
+Olt.belongsTo(Rack);
+
+Olt.hasMany(CartaoOlt);
+CartaoOlt.belongsTo(Olt);
+
+CartaoOlt.hasMany(PortaPon);
+PortaPon.belongsTo(CartaoOlt);
+
+Pop.hasMany(Dio);
+Dio.belongsTo(Pop);
+
+Rack.hasMany(Dio);
+Dio.belongsTo(Rack);
+
+Dio.hasMany(PortaDio);
+PortaDio.belongsTo(Dio);
+
+Pop.hasMany(Equipamento);
+Equipamento.belongsTo(Pop);
+//3
+Projeto.hasMany(Cabo);
+Cabo.belongsTo(Projeto);
+
+Cabo.hasMany(Tubo);
+Tubo.belongsTo(Cabo);
+
+Tubo.hasMany(Fibra);
+Fibra.belongsTo(Tubo);
+
+Cabo.hasMany(ReservaTecnica);
+ReservaTecnica.belongsTo(Cabo);
+
+Cabo.hasMany(PontoCabo);
+PontoCabo.belongsTo(Cabo);
+
+CaixaEmenda.hasMany(PortaCaixa);
+PortaCaixa.belongsTo(CaixaEmenda);
+
+CaixaEmenda.hasMany(Fusao);
+Fusao.belongsTo(CaixaEmenda);
+//4
+Splitter.hasMany(PortaSplitter);
+PortaSplitter.belongsTo(Splitter);
+
+CTO.hasMany(PortaCTO);
+PortaCTO.belongsTo(CTO);
+
+Cliente.hasOne(ONU);
+ONU.belongsTo(Cliente);
+
+Cliente.hasOne(AtendimentoFTTH);
+AtendimentoFTTH.belongsTo(Cliente);
+
+ONU.hasOne(AtendimentoFTTH);
+AtendimentoFTTH.belongsTo(ONU);
+
+PortaCTO.hasOne(AtendimentoFTTH);
+AtendimentoFTTH.belongsTo(PortaCTO);
+
+PortaPon.hasMany(AtendimentoFTTH);
+AtendimentoFTTH.belongsTo(PortaPon);
+}
