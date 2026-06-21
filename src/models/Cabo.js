@@ -46,10 +46,7 @@ export default (sequelize) => {
         },
 
         geometria: {
-            type: DataTypes.GEOMETRY(
-                "LINESTRING",
-                4326
-            )
+            type:DataTypes.JSONBp
         }
 
     });

@@ -18,10 +18,7 @@ export default (sequelize) => {
         ordem: DataTypes.INTEGER,
 
         localizacao: {
-            type: DataTypes.GEOMETRY(
-                "POINT",
-                4326
-            )
+            type: DataTypes.JSONB
         }
 
     });
