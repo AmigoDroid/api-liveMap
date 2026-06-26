@@ -40,10 +40,11 @@ async function syncDatabase() {
     console.log(tables);
 }
 
-export async function initializeDatabase() {
+export function ServerDatabase() {
     let attempts = 0;
     const MAX_ATTEMPTS = 10;
-
+    console.log(`iniciando banco de dados...`);
+    async function startServer() {
     while (true) {
         try {
             console.log("Tentando conectar ao banco de dados...");
@@ -74,4 +75,8 @@ export async function initializeDatabase() {
             await sleep(RECONNECT_DELAY);
         }
     }
+}
+return {
+    startServer,
+  };
 }
