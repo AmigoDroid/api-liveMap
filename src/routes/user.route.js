@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { autenticar, temPermissao } from "../middlewares/auth.middleware.js";
+import { autenticar, temPermissao } from "../core/middlewares/auth.middleware.js";
 import {
     convidarUsuario,
     cadastrarUsuario,

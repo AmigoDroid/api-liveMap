@@ -1,3 +1,4 @@
+// o ../mail deve vim pra cá pois nessa pasta tem 2 serviços email e sms, e ambos devem sofrer refatoração.
 import nodemailer from "nodemailer";
 
 const transporter = nodemailer.createTransport({
