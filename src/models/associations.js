@@ -141,13 +141,31 @@ export default function associate(models) {
     // REDE ÓPTICA (FTTH CORE)
     // =========================
 
-    models.Projeto.hasMany(models.Cabo, {
-        foreignKey: "projetoId"
+    // Provedor → entidades do mapa
+    models.Provedor.hasMany(models.CTO,             { foreignKey: "provedorId", onDelete: "CASCADE" });
+    models.CTO.belongsTo(models.Provedor,            { foreignKey: "provedorId" });
+
+    models.Provedor.hasMany(models.Cabo,            { foreignKey: "provedorId", onDelete: "CASCADE" });
+    models.Cabo.belongsTo(models.Provedor,           { foreignKey: "provedorId" });
+
+    models.Provedor.hasMany(models.CaixaEmenda,     { foreignKey: "provedorId", onDelete: "CASCADE" });
+    models.CaixaEmenda.belongsTo(models.Provedor,    { foreignKey: "provedorId" });
+
+    models.Provedor.hasMany(models.CaixaAtendimento,{ foreignKey: "provedorId", onDelete: "CASCADE" });
+    models.CaixaAtendimento.belongsTo(models.Provedor, { foreignKey: "provedorId" });
+
+    // Provedor → Projeto
+    models.Provedor.hasMany(models.Projeto, {
+        foreignKey: "provedorId",
+        onDelete: "CASCADE"
+    });
+    models.Projeto.belongsTo(models.Provedor, {
+        foreignKey: "provedorId"
     });
 
-    models.Cabo.belongsTo(models.Projeto, {
-        foreignKey: "projetoId"
-    });
+    // Projeto → Cabo
+    models.Projeto.hasMany(models.Cabo, { foreignKey: "projetoId" });
+    models.Cabo.belongsTo(models.Projeto, { foreignKey: "projetoId" });
 
     models.Cabo.hasMany(models.Tubo, {
         foreignKey: "caboId"
@@ -174,7 +192,9 @@ export default function associate(models) {
     });
 
     models.Cabo.hasMany(models.PontoCabo, {
-        foreignKey: "caboId"
+        foreignKey: "caboId",
+        as: "pontos",
+        onDelete: "CASCADE"
     });
 
     models.PontoCabo.belongsTo(models.Cabo, {
@@ -210,7 +230,9 @@ export default function associate(models) {
     });
 
     models.CTO.hasMany(models.PortaCTO, {
-        foreignKey: "ctoId"
+        foreignKey: "ctoId",
+        as: "portas",
+        onDelete: "CASCADE"
     });
 
     models.PortaCTO.belongsTo(models.CTO, {

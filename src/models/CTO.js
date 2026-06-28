@@ -10,6 +10,11 @@ export default (sequelize) => {
             primaryKey: true
         },
 
+        provedorId: {
+            type: DataTypes.UUID,
+            allowNull: false
+        },
+
         codigo: {
             type: DataTypes.STRING,
             unique: true
@@ -23,19 +28,16 @@ export default (sequelize) => {
         },
 
         status: {
-            type: DataTypes.ENUM(
-                "ATIVA",
-                "LOTADA",
-                "MANUTENCAO"
-            ),
+            type: DataTypes.ENUM("ATIVA", "LOTADA", "MANUTENCAO"),
             defaultValue: "ATIVA"
         },
 
+        // { lat: -5.123, lng: -44.456 }
         localizacao: {
-            type:DataTypes.JSONB
+            type: DataTypes.JSONB
         }
 
-    });
+    }, { paranoid: true, timestamps: true });
 
     return CTO;
 };

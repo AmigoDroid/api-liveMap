@@ -10,9 +10,14 @@ export default (sequelize) => {
             defaultValue: DataTypes.UUIDV4
         },
 
-        projetoId: {
+        provedorId: {
             type: DataTypes.UUID,
             allowNull: false
+        },
+
+        projetoId: {
+            type: DataTypes.UUID,
+            allowNull: true
         },
 
         codigo: {
@@ -45,10 +50,14 @@ export default (sequelize) => {
             defaultValue: "PROJETADO"
         },
 
+        // GeoJSON LineString: { type: "LineString", coordinates: [[lng, lat], ...] }
         geometria: {
-            type:DataTypes.JSONBp
+            type: DataTypes.JSONB
         }
 
+    }, {
+        paranoid: true,
+        timestamps: true
     });
 
     return Cabo;

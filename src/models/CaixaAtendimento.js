@@ -10,13 +10,19 @@ export default (sequelize) => {
             primaryKey: true
         },
 
+        provedorId: {
+            type: DataTypes.UUID,
+            allowNull: false
+        },
+
         codigo: DataTypes.STRING,
 
+        // { lat: -5.123, lng: -44.456 }
         localizacao: {
             type: DataTypes.JSONB
         }
 
-    });
+    }, { paranoid: true, timestamps: true });
 
     return CaixaAtendimento;
 };

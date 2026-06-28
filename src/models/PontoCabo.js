@@ -17,11 +17,12 @@ export default (sequelize) => {
 
         ordem: DataTypes.INTEGER,
 
+        // { lat: -5.123, lng: -44.456 }
         localizacao: {
             type: DataTypes.JSONB
         }
 
-    });
+    }, { timestamps: false });
 
     return PontoCabo;
 };

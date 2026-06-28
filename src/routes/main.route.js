@@ -1,21 +1,18 @@
 import { Router } from "express";
-
-// Routes
-import user from "./user.route.js";
-import admin from "./master/admin.route.js";
+import authRoutes from "./auth.route.js";
+import userRoutes from "./user.route.js";
+import adminRoutes from "./master/admin.route.js";
+import mapaRoutes from "./mapa.route.js";
 
 const router = Router();
 
-// Register routes
-router.use("/user", user);
-router.use("/admin", admin);
+router.use("/auth",     authRoutes);
+router.use("/usuarios", userRoutes);
+router.use("/admin",    adminRoutes);
+router.use("/mapa",     mapaRoutes);
 
-// 404 handler
 router.use((req, res) => {
-    res.status(404).json({
-        success: false,
-        message: "Route not found"
-    });
+    res.status(404).json({ success: false, message: "Rota não encontrada" });
 });
 
 export default router;

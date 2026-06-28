@@ -10,24 +10,26 @@ export default (sequelize) => {
             defaultValue: DataTypes.UUIDV4
         },
 
+        provedorId: {
+            type: DataTypes.UUID,
+            allowNull: false
+        },
+
         codigo: {
             type: DataTypes.STRING,
             unique: true
         },
 
         tipo: {
-            type: DataTypes.ENUM(
-                "CEO",
-                "CTO",
-                "CAIXA_PASSAGEM"
-            )
+            type: DataTypes.ENUM("CEO", "CTO", "CAIXA_PASSAGEM")
         },
 
+        // { lat: -5.123, lng: -44.456 }
         localizacao: {
             type: DataTypes.JSONB
         }
 
-    });
+    }, { paranoid: true, timestamps: true });
 
     return CaixaEmenda;
 };
